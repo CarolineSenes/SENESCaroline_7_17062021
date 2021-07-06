@@ -1,8 +1,9 @@
 <template>
-	<v-app-bar app color="#000000" dark>
+	<v-app-bar app color="dark" dark>
+		<h1><v-toolbar-title>Groupomania</v-toolbar-title></h1>
 		<v-tooltip>
 			<template v-slot:activator="{ on, attrs }">
-				<v-btn class="mx-2" to="/messages" icon v-bind="attrs" v-on="on">
+				<v-btn class="mx-2" to="/messages" icon v-bind="attrs" v-on="on" aria-label="Aller à la page de tous les posts">
 					<v-icon>
 						mdi-home
 					</v-icon>
@@ -18,6 +19,7 @@
 					icon
 					v-bind="attrs"
 					v-on="on"
+					aria-label="Poster un message"
 				>
 					<v-icon>
 						mdi-email-plus
@@ -35,6 +37,7 @@
 					icon
 					v-bind="attrs"
 					v-on="on"
+					aria-label="Aller à la page de mon profile"
 				>
 					<v-icon>
 						mdi-account
@@ -52,6 +55,7 @@
 					icon
 					v-bind="attrs"
 					v-on="on"
+					aria-label="Se déconnecter"
 				>
 					<v-icon>
 						mdi-logout

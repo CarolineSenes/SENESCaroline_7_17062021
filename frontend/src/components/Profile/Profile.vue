@@ -23,7 +23,7 @@
 				<v-dialog v-model="dialog" max-width="500">
 					<v-card>
 						<v-card-title>
-							Êtes vous sûr de supprimer ce profil ?
+							Êtes vous sûr de vouloir supprimer ce profil ?
 						</v-card-title>
 
 						<v-card-actions @click="dialog = false">
@@ -70,7 +70,7 @@
 							<img contain height="400" v-if="imgPreview" :src="imgPreview" />
 						</div>
 						<v-card-actions>
-							<v-btn type="submit" color="success">
+							<v-btn type="submit" color="success black--text">
 								Sauvegarder
 							</v-btn>
 							<v-btn
@@ -83,7 +83,7 @@
 							<v-dialog v-model="dialog" max-width="500">
 								<v-card>
 									<v-card-title>
-										Êtes vous sûr de supprimer votre profil ?
+										Êtes vous sûr de vouloir supprimer votre profil ?
 									</v-card-title>
 
 									<v-card-actions @click="dialog = false">

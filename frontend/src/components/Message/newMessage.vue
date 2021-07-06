@@ -1,7 +1,7 @@
 <template>
 	<v-container>
 		<v-card class="pa-10 mt-7">
-			<h3 align="center" class="mb-3">Nouveau message</h3>
+			<h2 align="center" class="mb-3">Nouveau message</h2>
 			<v-form ref="form" enctype="multipart/form-data" @submit.prevent="newMsg">
 				<v-list-item>
 					<v-list-item-content>
@@ -46,7 +46,7 @@
 				<div align="center">
 					<v-btn
 						align="center"
-						color="cyan darken-2"
+						color="cyan darken-2 black--text"
 						type="submit"
 						value="submit"
 						dark

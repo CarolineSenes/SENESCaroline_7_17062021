@@ -29,7 +29,7 @@
 			<v-divider></v-divider>
 			<v-card-actions>
 				<v-spacer />
-				<v-btn color="info" :disabled="!valid" @click="submitForm">
+				<v-btn color="info black--text" :disabled="!valid" @click="submitForm">
 					Inscription</v-btn
 				>
 				<v-spacer />

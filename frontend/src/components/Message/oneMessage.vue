@@ -12,10 +12,10 @@
 					min-width="40vw"
 					max-width="70vw"
 				>
-					<v-list-item align="start" hover>
+					<v-list-item class="red lighten-3" align="start" hover>
 						<router-link :to="`/profile/${message.User.id}`" >
 							<v-list-item-avatar outlined color="grey darken-3">
-								<v-img :src="message.User.avatar"></v-img>
+								<v-img :src="message.User.avatar" alt="photo de profil"></v-img>
 							</v-list-item-avatar>
 						</router-link>
 
@@ -23,7 +23,7 @@
 							<v-list-item-title class="font-weight-medium">{{
 								message.User.username
 							}}</v-list-item-title>
-							<v-list-item-title>{{
+							<v-list-item-title class="text-caption">{{
 								message.updatedAt | formatDate
 							}}</v-list-item-title>
 						</v-list-item-content>
@@ -32,7 +32,7 @@
 					<v-row>
 						<v-col>
 							<v-card-title>{{ message.title }}</v-card-title>
-							<v-card-text>{{ message.content }}</v-card-text>
+							<v-card-text class="text-start">{{ message.content }}</v-card-text>
 							<v-img contain max-height="600" :src="message.attachment"></v-img>
 						</v-col>
 					</v-row>
@@ -93,7 +93,7 @@
 						<v-col>
 							<v-tooltip top v-if="!isLiked">
 								<template v-slot:activator="{ on, attrs }">
-									<v-btn icon v-bind="attrs" v-on="on" @click="addLike">
+									<v-btn icon v-bind="attrs" v-on="on" @click="addLike" aria-label="Aimer cette publication">
 										<v-icon size="1.5rem" color="green">
 											mdi-thumb-up-outline
 										</v-icon>
@@ -103,7 +103,7 @@
 							</v-tooltip>
 							<v-tooltip top v-else-if="isLiked">
 								<template v-slot:activator="{ on, attrs }">
-									<v-btn icon v-bind="attrs" v-on="on" @click="removeLike">
+									<v-btn icon v-bind="attrs" v-on="on" @click="removeLike" aria-label="Ne plus aimer cette publication">
 										<v-icon size="1.5rem" color="green">
 											mdi-thumb-up
 										</v-icon>
@@ -120,6 +120,7 @@
 										v-bind="attrs"
 										v-on="on"
 										@click="toBottom"
+										aria-label="Commenter cette publication"
 									>
 										<v-icon size="1.5rem" color="teal">
 											mdi-comment-plus
@@ -145,7 +146,7 @@
 					<v-list-item>
 						<router-link :to="`/profile/${comment.User.id}`">
 							<v-list-item-avatar outlined color="grey darken-3">
-								<v-img x-small :src="comment.User.avatar"></v-img>
+								<v-img x-small :src="comment.User.avatar" alt="photo du compte qui commente"></v-img>
 							</v-list-item-avatar>
 						</router-link>
 
@@ -158,7 +159,7 @@
 					</v-list-item>
 					<v-card-text class="color">{{ comment.content }}</v-card-text>
 					<v-list-item>
-						<v-card-text class="end"
+						<v-card-text class="end text-caption"
 							>le {{ comment.createdAt | formatDate }}</v-card-text
 						>
 						<v-tooltip
@@ -174,6 +175,7 @@
 									text
 									color="deep-orange darken-3"
 									small
+									aria-label="Supprimer ce commentaire"
 								>
 									<v-icon>mdi-delete</v-icon>
 								</v-btn>

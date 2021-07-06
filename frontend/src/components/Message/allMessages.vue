@@ -16,7 +16,7 @@
 						min-width="30vw"
 						max-width="70vw"
 					>
-						<v-list-item align="start" hover>
+						<v-list-item class="red lighten-3" align="start" hover>
 							<v-list-item-avatar color="grey darken-3">
 								<v-img :src="message.User.avatar"></v-img>
 							</v-list-item-avatar>
@@ -25,7 +25,7 @@
 								<v-list-item-title class="font-weight-medium">{{
 									message.User.username
 								}}</v-list-item-title>
-								<v-list-item-title>{{
+								<v-list-item-title class="text-caption">{{
 									message.createdAt | formatDate
 								}}</v-list-item-title>
 							</v-list-item-content>
@@ -33,7 +33,7 @@
 						<v-row>
 							<v-col>
 								<v-card-title>{{ message.title }}</v-card-title>
-								<v-card-text>{{ message.content }}</v-card-text>
+								<v-card-text class="text-start">{{ message.content }}</v-card-text>
 								<v-img
 									contain
 									max-height="500"
@@ -44,23 +44,23 @@
 
 						<v-card-actions align="center">
 							<v-col>
-								<v-icon class="mr-1" size="1.5rem" hover>
+								<v-icon class="mr-1 blue--text" size="1.5rem" hover aria-label="Commenter cette publication">
 									mdi-message-text</v-icon
 								>
-								<span>{{ message.Comments.length }} Commentaire(s) </span>
+								<span>{{ message.Comments.length }}</span>
 							</v-col>
 							<v-col>
 								<v-tooltip top>
 									<template v-slot:activator="{ on, attrs }">
-										<v-btn icon v-bind="attrs" v-on="on">
-											<v-icon size="1.8rem" color="green">
+										<v-btn icon v-bind="attrs" v-on="on" aria-label="Aimer cette publication">
+											<v-icon size="1.5rem" color="green">
 												mdi-thumb-up
 											</v-icon>
 										</v-btn>
 									</template>
 									<span>J'aime</span>
 								</v-tooltip>
-								<span>{{ message.Likes.length }} Like(s)</span>
+								<span>{{ message.Likes.length }}</span>
 							</v-col>
 						</v-card-actions>
 					</v-card>
