@@ -39,7 +39,7 @@ export default {
 			showPassword: false,
 			userInfo: {
 				email: "",
-				password: "test1234!",
+				password: "",
 			},
 		};
 	},

@@ -1,17 +1,26 @@
+require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const path = require("path");
 const helmet = require("helmet");
 const cors = require("cors");
+const rateLimit = require('express-rate-limit');
+
+//100 requêtes toutes les 15min par IP
+const apiLimiter = rateLimit({
+	windowMs: 15 * 60 * 1000,
+	max: 100
+  });
 
 const app = express();
+
+app.use('/api', apiLimiter); 
 
 const userRoutes = require("./routes/user");
 const messageRoutes = require("./routes/message");
 const commentRoutes = require("./routes/comment");
 
-require("dotenv").config();
 const db = require("./models");
+
 //Connexion à la base de données
 db.sequelize
 	.authenticate()
@@ -23,6 +32,7 @@ db.sequelize
 	});
 
 app.use(cors());
+
 //En-têtes HTTP
 app.use(helmet());
 app.use((req, res, next) => {
@@ -38,8 +48,7 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "images")));
 

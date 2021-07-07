@@ -1,10 +1,11 @@
 const bcrypt = require("bcrypt");
 const db = require("../models");
 const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth");
+// const auth = require("../middleware/auth");
 const fs = require("fs");
 require("dotenv").config();
 
+REGEX_USERNAME = /^[a-zéèàêâùïüëA-Z-\s\']{5,30}$/;
 REGEX_PASSWORD = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{6,20}$/;
 REGEX_EMAIL = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 exports.register = (req, res) => {
@@ -16,6 +17,11 @@ exports.register = (req, res) => {
 	if (!REGEX_EMAIL.test(req.body.email)) {
 		return res.status(400).json({
 			error: "Le format d'email n'est pas valide",
+		});
+	}
+	if (!REGEX_USERNAME.test(req.body.username)) {
+		return res.status(400).json({
+			error: "Le nom d'utilisateur doit comprendre entre 5 et 30 caractère",
 		});
 	}
 	db.User.findOne({
