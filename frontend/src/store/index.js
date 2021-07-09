@@ -10,7 +10,7 @@ export default new Vuex.Store({
 		token: null,
 		userId: null,
 		username: null,
-		isAdmin: false,
+		isAdmin: 0,
 		isLogged: false,
 		snackbar: {},
 	},
@@ -31,6 +31,13 @@ export default new Vuex.Store({
 		setSnackbar(state, snackbar) {
 			state.snackbar = snackbar;
 		},
+		logout(state){
+			state.token = ''
+			state.userId = '',
+			state.username = '',
+			state.isAdmin = 0,
+			state.isLogged = false
+		}
 	},
 	actions: {
 		setToken({ commit }, token) {
@@ -50,5 +57,8 @@ export default new Vuex.Store({
 			snackbar.color = snackbar.color || "teal";
 			commit("setSnackbar", snackbar);
 		},
+		logout({ commit }) {
+			commit("logout")
+		}
 	},
 });

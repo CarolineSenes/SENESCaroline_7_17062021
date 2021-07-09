@@ -25,6 +25,7 @@
 						mdi-email-plus
 					</v-icon>
 				</v-btn>
+
 			</template>
 			<span>Poster un message</span>
 		</v-tooltip>
@@ -43,6 +44,7 @@
 						mdi-account
 					</v-icon>
 				</v-btn>
+
 			</template>
 			<span>Mon profil</span>
 		</v-tooltip>
@@ -61,6 +63,7 @@
 						mdi-logout
 					</v-icon>
 				</v-btn>
+
 			</template>
 			<span>Déconnexion</span>
 		</v-tooltip>
@@ -71,7 +74,7 @@
 export default {
 	methods: {
 		logout() {
-			window.localStorage.vuex = JSON.stringify({});
+			this.$store.dispatch("logout"),
 			this.$router.push("/");
 			this.$store.dispatch("setSnackbar", {
 				text: "Déconnexion réussie.",
