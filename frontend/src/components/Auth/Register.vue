@@ -14,6 +14,8 @@
 						label="Email"
 						type="email"
 						prepend-icon="mdi-account-circle"
+						:rules="emailRules"
+
 					/>
 					<v-text-field
 						v-model="userInfo.password"
@@ -53,12 +55,26 @@ export default {
 			usernameRules: [
 				(v) =>
 					(v && v.length >= 5) ||
-					"Votre pseudo doit contenir minimum 5 caractères.",
+					"Le nom d'utilisateur doit comprendre entre 5 et 30 caractère et peut contenir des tirets/espaces/apostrophes.",
 			],
 			passwordRules: [
 				(v) =>
 					(v && v.length >= 6) ||
 					"Doit contenir entre 6 et 20 caractères avec un caractère alphabétique, un caractère spécial et un chiffre.",
+				(v) =>
+					/(?=.*[A-Za-z])/.test(v) ||
+					"Doit contenir un caractère alphabétique en majuscule ou minuscule.",
+				(v) =>
+					/(?=.*\d)/.test(v) ||
+					"Doit contenir un chiffre.",
+				(v) =>
+					/(?=.*[$@$!%*#?&])/.test(v) ||
+					"Doit contenir un caractère spécial.",
+			],
+			emailRules: [
+				(v) =>
+					/^[a-zA-Z0-9_.-]+[@]{1}[a-zA-Z0-9]+[.]{1}[a-zA-Z]{2,10}$/.test(v) ||
+					"Le format de l'email doit être de type name@domaine.com"
 			],
 		};
 	},
@@ -78,7 +94,7 @@ export default {
 						this.$store.dispatch("setSnackbar", {
 							color: "error",
 							showing: true,
-							text: `Veuillez vérifier les données du formulaire.`,
+							text: `L'adresse email est déjà prise`,
 						});
 					});
 			}
