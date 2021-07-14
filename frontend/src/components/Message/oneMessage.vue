@@ -210,7 +210,7 @@
 			</v-col>
 		</v-row>
 		<v-col cols="12">
-			<v-card class="mx-auto" min-width="350" max-width="60vw">
+			<v-card class="mx-auto">
 				<v-container>
 					<v-card flat>
 						<div>

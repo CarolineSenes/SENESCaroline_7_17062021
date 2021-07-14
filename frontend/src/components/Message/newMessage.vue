@@ -7,7 +7,7 @@
 					<v-list-item-content>
 						<v-list-item-title>
 							<v-text-field
-								outlined
+								filled
 								v-model="title"
 								label="Titre"
 								type="text"
@@ -36,7 +36,7 @@
 				</div>
 				<div class="mt-5">
 					<v-textarea
-						outlined
+						filled
 						v-model="content"
 						label="Mon message"
 						type="text"
