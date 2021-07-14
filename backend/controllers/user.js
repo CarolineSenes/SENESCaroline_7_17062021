@@ -1,7 +1,8 @@
+////////// contient logique métier pour user //////////
+
 const bcrypt = require("bcrypt");
 const db = require("../models");
 const jwt = require("jsonwebtoken");
-// const auth = require("../middleware/auth");
 const fs = require("fs");
 require("dotenv").config();
 

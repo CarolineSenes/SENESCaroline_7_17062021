@@ -1,3 +1,5 @@
+////////// contient logique métier pour comment //////////
+
 const db = require("../models");
 
 exports.createComment = (req, res) => {

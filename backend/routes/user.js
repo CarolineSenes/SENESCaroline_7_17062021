@@ -1,3 +1,5 @@
+////////// contient logique de routing pour user //////////
+
 const express = require("express");
 const router = express.Router();
 const userCtrl = require("../controllers/user");
