@@ -1,3 +1,4 @@
+
 # GROUPOMANIA
 
 Un réseau social interne d'entreprise, moderne et ludique.
@@ -22,7 +23,7 @@ Un réseau social interne d'entreprise, moderne et ludique.
   
 ## Fonctionnalités
 
-- création/déconnexion, modification, suppression d'un compte utilisateur
+- création, connexion/déconnexion, modification, suppression d'un compte utilisateur
 - création, modification, suppression de messages
 - persistance des données
 - rôles : utilisateur et administrateur
@@ -33,14 +34,13 @@ Un réseau social interne d'entreprise, moderne et ludique.
   
 ## Screenshots
 
-![App Screenshot](https://github.com/CarolineSenes/SENESCaroline_7_17062021/blob/master/imgReadme/visuels_groupomania.jpg)
+![App Screenshot](https://github.com/CarolineSenes/SENESCaroline_7_17062021/blob/master/imgReadme/screenshots.jpg)
 
   
 ## Installation
 ### Backend
 
 ```bash
-  cd backend
   npm install
 ```
 
