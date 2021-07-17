@@ -1,8 +1,8 @@
 <template>
-	<v-app class="blue-grey lighten-5">
-		<v-card width="400" class="mx-auto mt-15">
+		<v-card width="400" class="mx-auto mt-5 red lighten-5">
+			<v-card-title>Se connecter</v-card-title>
 			<v-card-text>
-				<v-form v-model="valid">
+				<v-form>
 					<v-text-field
 						v-model="userInfo.email"
 						label="Email"
@@ -18,21 +18,20 @@
 					/>
 				</v-form>
 			</v-card-text>
-			<v-divider></v-divider>
 			<v-card-actions>
 				<v-spacer />
-				<v-btn color="info black--text" :disabled="!valid" @click="submitForm">
-					Connexion</v-btn
+				<v-btn color="#000000" dark @click="submitForm">
+					Se connecter</v-btn
 				>
 				<v-spacer />
 			</v-card-actions>
 		</v-card>
-	</v-app>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+	name: "Login",
 	data() {
 		return {
 			valid: false,
@@ -56,7 +55,7 @@ export default {
 					this.$store.dispatch("setSnackbar", {
 						text: `Salut, ${response.data.username} !`,
 					});
-					this.$router.push({ name: "allMessages" });
+					this.$router.push({ name: "allMessages" })
 				})
 				.catch(() => {
 					this.$store.dispatch("setSnackbar", {

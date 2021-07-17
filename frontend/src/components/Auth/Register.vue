@@ -1,6 +1,6 @@
 <template>
-	<v-app class="blue-grey lighten-5">
-		<v-card width="400" class="mx-auto mt-15">
+		<v-card width="400" class="mx-auto mt-5 red lighten-5">
+			<v-card-title>S'inscrire</v-card-title>
 			<v-card-text>
 				<v-form v-model="valid" ref="form">
 					<v-text-field
@@ -28,21 +28,20 @@
 					/>
 				</v-form>
 			</v-card-text>
-			<v-divider></v-divider>
 			<v-card-actions>
 				<v-spacer />
-				<v-btn color="info black--text" :disabled="!valid" @click="submitForm">
-					Inscription</v-btn
+				<v-btn color="#000000" dark @click="submitForm">
+					S'inscrire</v-btn
 				>
 				<v-spacer />
 			</v-card-actions>
 		</v-card>
-	</v-app>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+	name: "Register",
 	data() {
 		return {
 			valid: false,
@@ -55,7 +54,7 @@ export default {
 			usernameRules: [
 				(v) =>
 					(v && v.length >= 5) ||
-					"Le nom d'utilisateur doit comprendre entre 5 et 30 caractère et peut contenir des tirets/espaces/apostrophes.",
+					"Le nom d'utilisateur doit comprendre entre 5 et 30 caractères et peut contenir des tirets/espaces/apostrophes.",
 			],
 			passwordRules: [
 				(v) =>
@@ -80,7 +79,7 @@ export default {
 	},
 	methods: {
 		submitForm() {
-			if (this.$refs.form.validate()) {
+			if (this.$refs.form.validate()) { //si le formulaire est valide on lance la requête
 				axios
 					.post("http://localhost:3000/api/users/register", this.userInfo)
 					.then(() => {
