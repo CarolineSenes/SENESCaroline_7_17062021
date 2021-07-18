@@ -34,7 +34,7 @@ Un réseau social interne d'entreprise, moderne et ludique.
   
 ## Screenshots
 
-![App Screenshot](https://github.com/CarolineSenes/SENESCaroline_7_17062021/blob/master/imgReadme/screenshots.jpg)
+![App Screenshot](https://github.com/CarolineSenes/SENESCaroline_7_17062021/blob/master/imgReadme/screenshots_groupomania.jpg)
 
   
 ## Installation
