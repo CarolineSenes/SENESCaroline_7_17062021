@@ -1,12 +1,12 @@
 <template>
 		<v-card width="400" class="mx-auto mt-5 red lighten-5">
-			<v-card-title>Se connecter</v-card-title>
+			<v-card-title>Connexion</v-card-title>
 			<v-card-text>
-				<v-form>
+				<v-form v-model="valid" ref="form">
 					<v-text-field
 						v-model="userInfo.email"
 						label="Email"
-						prepend-icon="mdi-account-circle"
+						prepend-icon="mdi-at"
 					/>
 					<v-text-field
 						v-model="userInfo.password"
@@ -20,9 +20,9 @@
 			</v-card-text>
 			<v-card-actions>
 				<v-spacer />
-				<v-btn color="#000000" dark @click="submitForm">
-					Se connecter</v-btn
-				>
+				<v-btn color="#000000" dark @click="login()">
+					Connexion
+				</v-btn>
 				<v-spacer />
 			</v-card-actions>
 		</v-card>
@@ -43,11 +43,11 @@ export default {
 		};
 	},
 	methods: {
-		submitForm() {
+		login() {
 			axios
 				.post("http://localhost:3000/api/users/login", this.userInfo)
 				.then((response) => {
-					console.log(response);
+					console.log('User logged!', response);
 					this.$store.dispatch("setToken", response.data.token);
 					this.$store.dispatch("setAdmin", response.data.isAdmin);
 					this.$store.dispatch("setUser", response.data.userId);
@@ -55,7 +55,7 @@ export default {
 					this.$store.dispatch("setSnackbar", {
 						text: `Salut, ${response.data.username} !`,
 					});
-					this.$router.push({ name: "allMessages" })
+					this.$router.push("/messages")
 				})
 				.catch(() => {
 					this.$store.dispatch("setSnackbar", {

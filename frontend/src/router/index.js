@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import Login from "../components/Auth/Login.vue";
 import Register from "../components/Auth/Register.vue";
 import allMessages from "../components/Message/allMessages.vue";
 import oneMessage from "../components/Message/oneMessage.vue";
@@ -17,11 +16,6 @@ const routes = [
 		path: "/",
 		name: "Home",
 		component: Home,
-	},
-	{
-		path: "/login",
-		name: "Login",
-		component: Login,
 	},
 	{
 		path: "/register",

@@ -6,28 +6,21 @@
 				height="300"
 				src="../assets/icon-above-font.png"
 			></v-img>
-			<!-- <v-row align="center" justify="center">
-				<v-btn to="/Login" class="mr-5 my-10" color="#000000" dark
-					>Connexion</v-btn
-				>
-				<v-btn to="/register" class="ml-5 my-10" color="#000000" dark
-					>Inscription</v-btn
-				>
-			</v-row> -->
-			<v-row>
-			<Login /><Register />
+			<v-row align="center" justify="center">
+				<v-btn class="red accent-2" elevation="2" plain small to="/register">
+				Inscription</v-btn>
 			</v-row>
+			
+			<Login />
 		</v-container>
 </template>
 
 <script>
 import Login from "@/components/Auth/Login";
-import Register from "@/components/Auth/Register";
 export default {
 	name: "Home",
 	components: {
 		Login,
-		Register,
 	},
 };
 </script>

@@ -68,7 +68,6 @@
     <v-tooltip v-if="isLogged">
       <template v-slot:activator="{ on, attrs }">
         <v-btn
-          v-if= isLogged
           class="mx-2"
           @click="logout"
           icon
@@ -89,7 +88,7 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-
+  name: "NavBar",
   computed:{
     ...mapState(['isLogged'])
   },
