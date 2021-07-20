@@ -17,7 +17,7 @@ export default new Vuex.Store({
 	mutations: {
 		setToken(state, token) {
 			state.token = token;
-			state.isLogged = !!token;
+			state.isLogged = !!token; //vérifie si le token est défini ou null et renvoie true ou false
 		},
 		setAdmin(state, admin) {
 			state.isAdmin = admin;
@@ -36,8 +36,9 @@ export default new Vuex.Store({
 			state.userId = '',
 			state.username = '',
 			state.isAdmin = 0,
-			state.isLogged = false
-		}
+			state.isLogged = false,
+			state.snackbar = {}
+		},
 	},
 	actions: {
 		setToken({ commit }, token) {
@@ -59,6 +60,6 @@ export default new Vuex.Store({
 		},
 		logout({ commit }) {
 			commit("logout")
-		}
+		},
 	},
 });

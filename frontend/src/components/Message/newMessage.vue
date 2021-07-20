@@ -1,11 +1,8 @@
 <template>
 	<v-container>
-		<v-card class="pa-10 mt-7">
-			<h2 align="center" class="mb-3">Nouveau message</h2>
+		<v-card class="pa-5 mt-7">
+			<v-card-title>Nouveau message</v-card-title>
 			<v-form ref="form" enctype="multipart/form-data" @submit.prevent="newMsg">
-				<v-list-item>
-					<v-list-item-content>
-						<v-list-item-title>
 							<v-text-field
 								filled
 								v-model="title"
@@ -13,9 +10,6 @@
 								type="text"
 								:rules="titleRules"
 							></v-text-field>
-						</v-list-item-title>
-					</v-list-item-content>
-				</v-list-item>
 				<div>
 					<input
 						type="file"
@@ -32,7 +26,7 @@
 				</div>
 				<div>
 					<label v-if="imgPreview" for="preview">Aperçu de l'image:</label>
-					<img contain height="500" v-if="imgPreview" :src="imgPreview" />
+					<img contain height="100" v-if="imgPreview" :src="imgPreview" />
 				</div>
 				<div class="mt-5">
 					<v-textarea
@@ -77,21 +71,6 @@ export default {
 				(v) => (v && v.length >= 3) || "Veuillez ajouter un message.",
 			],
 		};
-	},
-
-	mounted() {
-		axios
-			.get("http://localhost:3000/api/messages", {
-				headers: {
-					Authorization: `Bearer ${$store.state.token}`,
-				},
-			})
-			.then((response) => {
-				this.user = response.data;
-			})
-			.catch((error) => {
-				console.log(error);
-			});
 	},
 
 	methods: {

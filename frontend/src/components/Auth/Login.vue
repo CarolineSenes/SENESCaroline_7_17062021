@@ -47,7 +47,7 @@ export default {
 			axios
 				.post("http://localhost:3000/api/users/login", this.userInfo)
 				.then((response) => {
-					console.log('User logged!', response);
+					console.log('Login OK! ', response);
 					this.$store.dispatch("setToken", response.data.token);
 					this.$store.dispatch("setAdmin", response.data.isAdmin);
 					this.$store.dispatch("setUser", response.data.userId);

@@ -105,10 +105,8 @@ exports.create = (req, res) => {
 		});
 };
 
-//Modification message
 exports.update = (req, res) => {
 	const id = req.params.id;
-
 	const data = req.file
 		? {
 				title: req.body.title,

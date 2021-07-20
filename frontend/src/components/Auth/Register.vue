@@ -101,7 +101,8 @@ export default {
       if (this.$refs.form.validate()) {
         axios
           .post("http://localhost:3000/api/users/register", this.userInfo)
-          .then(() => {
+          .then((response) => {
+            console.log('Register OK! ', response);
             this.$store.dispatch("setSnackbar", {
               showing: true,
               text: `BRAVO ! Votre compte est créé !`,

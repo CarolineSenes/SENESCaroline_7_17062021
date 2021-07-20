@@ -34,7 +34,7 @@ exports.register = (req, res) => {
 					db.User.create({
 						email: req.body.email,
 						username: req.body.username,
-						avatar: "http://localhost:3000/images/avatar.png",
+						avatar: "",
 						bio: "Veuillez compléter votre profil...",
 						password: hash,
 						isAdmin: 0,
@@ -120,14 +120,8 @@ exports.updateProfile = (req, res) => {
 		  };
 
 	db.User.findByPk(id).then((user) => {
-		const filename = user.avatar
-			? {
-					name: user.avatar.split("3000/")[1],
-			  }
-			: {
-					name: user.avatar,
-			  };
-		fs.unlink(`images/${filename.name}`, () => {
+		const filename = user.avatar.split("/images/")[1];
+		fs.unlink(`images/${filename}`, () => {
 			db.User.update(data, {
 				where: { id: id },
 			})
@@ -151,38 +145,15 @@ exports.updateProfile = (req, res) => {
 	});
 };
 
-exports.deleteProfile = (req, res) => {
-	db.User.findOne({
-		where: { id: req.params.id },
-	})
-		.then((userFound) => {
-			if (userFound) {
-				db.User.findOne({
-					where: { id: req.userId },
-				})
-					.then((userIsAdmin) => {
-						if (
-							req.userId == userFound.id
-						) {
-							db.User.destroy({
-								where: { id: req.params.id },
-							})
-								.then(() =>
-									res.status(201).json({ message: "Compte supprimé" })
-								)
-								.catch((error) => res.status(404).json({ error }));
-						} else {
-							res.status(403).json({
-								error: "Vous n'êtes pas autorisé à supprimer le compte",
-							});
-						}
-					})
-					.catch((error) => res.status(404).json({ error: error }));
-			} else {
-				res.status(404).json({ error: "Profil non trouvé" });
-			}
-		})
-		.catch((error) =>
-			res.status(500).json({ error: "Impossible de supprimer le compte" })
-		);
-};
+exports.deleteProfile = (req, res, next) => {
+	db.User.findOne({ where: { id: req.params.id } })
+	  .then((user) => {
+		const filename = user.avatar.split("/images/")[1];
+		fs.unlink(`images/${filename}`, () => {
+		  db.User.destroy({ where: { id: req.params.id } })
+			.then(res.status(200).json({ message: "profil supprimé" }))
+			.catch((error) => res.status(400).json({ error }));
+		});
+	  })
+	  .catch((error) => res.status(500).json({ error }));
+  };

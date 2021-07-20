@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken"); // Plug-in sécurité connexion
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 module.exports = (req, res, next) => {
 	try {

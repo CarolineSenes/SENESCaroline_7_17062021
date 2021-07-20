@@ -44,22 +44,15 @@
 
 						<v-card-actions align="center">
 							<v-col>
-								<v-icon class="mr-1 blue--text" size="1.5rem" hover aria-label="Commenter cette publication">
+								<v-icon class="mr-1 blue--text" size="1.5rem" aria-label="Commenter cette publication">
 									mdi-message-text</v-icon
 								>
 								<span>{{ message.Comments.length }}</span>
 							</v-col>
 							<v-col>
-								<v-tooltip top>
-									<template v-slot:activator="{ on, attrs }">
-										<v-btn icon v-bind="attrs" v-on="on" aria-label="Aimer cette publication">
-											<v-icon size="1.5rem" color="green">
-												mdi-thumb-up
-											</v-icon>
-										</v-btn>
-									</template>
-									<span>J'aime</span>
-								</v-tooltip>
+								<v-icon class="mr-1" size="1.5rem" color="green" aria-label="Aimer cette publication">
+									mdi-thumb-up
+								</v-icon>
 								<span>{{ message.Likes.length }}</span>
 							</v-col>
 						</v-card-actions>
@@ -91,6 +84,7 @@ export default {
 			}
 		},
 	},
+
 	mounted() {
 		axios
 			.get("http://localhost:3000/api/messages", {
@@ -101,6 +95,7 @@ export default {
 			.then((response) => {
 				this.messageList = response.data;
 			})
+			
 			.catch((error) => {
 				console.log(error);
 			});
