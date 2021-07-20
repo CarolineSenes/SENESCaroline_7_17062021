@@ -62,10 +62,14 @@ Créer la base de données et faire les migrations :
   npm run dev
 ```
 
-(optionnel, si vous avez créé des seeders :)
-
+(optionnel, si vous voulez partir sur une base de données avec des users/messages existants)
+Solution 1 (seeders) :
 ```bash
   npx sequelize-cli db:seed:all
+```
+Solution 2 (sauvegarde database) :
+```bash
+  importer fichier sauv_database/v2_groupomania.sql avec phpMyAdmin ou la console
 ```
 
 Lancer le backend :
