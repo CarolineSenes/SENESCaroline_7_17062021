@@ -120,7 +120,7 @@ exports.updateProfile = (req, res) => {
 		  };
 
 	db.User.findByPk(id).then((user) => {
-		const filename = user.avatar.split("/images/")[1];
+		const filename = user.avatar.split("/3000/")[1];
 		fs.unlink(`images/${filename}`, () => {
 			db.User.update(data, {
 				where: { id: id },
