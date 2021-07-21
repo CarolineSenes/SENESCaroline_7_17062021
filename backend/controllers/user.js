@@ -104,46 +104,16 @@ exports.getUserProfile = (req, res) => {
 		});
 };
 
-exports.updateProfile = (req, res) => {
-	const id = req.params.id;
-	const data = req.file
-		? {
-				// Si image
-				bio: req.body.bio,
-				avatar: `${req.protocol}://${req.get("host")}/images/${
-					req.file.filename
-				}`,
-		  }
-		: {
-				// Sans image
-				bio: req.body.bio,
-		  };
-
-	db.User.findByPk(id).then((user) => {
-		const filename = user.avatar.split("/3000/")[1];
-		fs.unlink(`images/${filename}`, () => {
-			db.User.update(data, {
-				where: { id: id },
-			})
-				.then((num) => {
-					if ((num = 1)) {
-						res.send({
-							message: "Votre profil a été mis à jour.",
-						});
-					} else {
-						res.send({
-							message: "Nous ne pouvons mettre à jour votre profil.",
-						});
-					}
-				})
-				.catch((err) => {
-					res.status(500).send({
-						message: "Impossible de mettre à jour de votre profil.",
-					});
-				});
-		});
-	});
-};
+exports.updateProfile = (req, res, next) => {
+    const userObject = req.file ?
+        {
+            ...req.body,
+            avatar: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+        } : { ... req.body}
+    db.User.update({ ...userObject, id:  req.params.id}, { where: { id: req.params.id }})
+      .then(() => res.status(200).json({ ...userObject }))
+      .catch(error => res.status(400).json({ error }))
+}
 
 exports.deleteProfile = (req, res, next) => {
 	db.User.findOne({ where: { id: req.params.id } })
